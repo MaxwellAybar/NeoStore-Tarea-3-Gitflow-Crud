@@ -32,11 +32,12 @@ function renderizarProductos() {
     }
 
     productos.forEach(prod => {
+        const precioNum = Number(prod.precio) || 0;
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>#${prod.id}</td>
             <td><strong>${prod.nombre}</strong></td>
-            <td>$${prod.precio.toFixed(2)}</td>
+            <td>$${precioNum.toFixed(2)}</td>
             <td>${prod.stock} unids.</td>
             <td><span class="badge">${prod.categoria}</span></td>
             <td>
@@ -99,7 +100,10 @@ function guardarEnLocalStorage() {
     localStorage.setItem('neostore_productos', JSON.stringify(productos));
 }
 
-renderizarProductos();
+
+function buscarProducto(criterio) {
+    console.log("Buscando producto por criterio:", criterio);
+}
 
 const inputBuscar = document.getElementById('input-buscar');
 
@@ -118,3 +122,5 @@ if (inputBuscar) {
         });
     });
 }
+
+renderizarProductos();
